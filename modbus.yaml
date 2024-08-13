@@ -1,0 +1,1331 @@
+- name: Inverter
+  type: tcp
+  host: 192.168.31.116
+  port: 502
+
+############################## BINARY SENSORS ##############################
+
+  binary_sensors:
+
+    # 194 Grid Connected Status
+    - name: "Inverter Grid Connected Status"
+      slave: 1
+      address: 194
+      input_type: holding
+
+############################## SENSORS ##############################
+
+  sensors:
+
+############################## BATTERY ##############################
+
+    # 182 Battery Temperature
+    - name: "Inverter Battery Temperature"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      slave: 1
+      address: 182
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: -100
+      precision: 1
+
+    # 183 Battery Voltage
+    - name: "Inverter Battery Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 183
+      data_type: uint16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 1
+
+    # 184 Battery SOC
+    - name: "Inverter Battery SOC"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 184
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 190 Battery Power
+    - name: "Inverter Battery Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 190
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 191 Battery Current
+    - name: "Inverter Battery Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 191
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 314 Battery Charge Limit Current
+    - name: "Inverter Battery Charge Limit Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 314
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 315 Battery Charge Limit Current
+    - name: "Inverter Battery Discharge Limit Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 315
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # Battery capacity (if managed by BMS)
+
+    # 217 Battery Capacity Shutdown
+    - name: "Inverter Battery Capacity Shutdown"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 217
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 218 Battery Restart Capacity
+    - name: "Inverter Battery Restart Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 218
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 219 Battery Low Capacity
+    - name: "Inverter Battery Low Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 219
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # Battery voltage (if managed by voltage only)
+
+    # 220 Battery Shutdown Voltage
+    - name: "Inverter Battery Shutdown Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 220
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 221 Battery Restart Voltage
+    - name: "Inverter Battery Restart Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 221
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 222 Battery Low Voltage
+    - name: "Inverter Battery Low Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 222
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 201 Battery Equalization Voltage
+    - name: "Inverter Battery Equalization Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 201
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 202 Battery Absorption Voltage
+    - name: "Inverter Battery Absorption Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 202
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 203 Battery Float Voltage
+    - name: "Inverter Battery Float Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 203
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+############################## INVERTER ##############################
+
+    # 175 Inverter Power
+    - name: "Inverter Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 175
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 154 Inverter Voltage
+    - name: "Inverter Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 154
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 164 Inverter Current
+    - name: "Inverter Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 164
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 1
+
+    # 193 Inverter Frequency
+    - name: "Inverter Frequency"
+      device_class: frequency
+      unit_of_measurement: "Hz"
+      slave: 1
+      address: 193
+      data_type: uint16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+############################## GRID ##############################
+
+    # 079 Grid Frequency
+    - name: "Inverter Grid Frequency"
+      device_class: frequency
+      unit_of_measurement: "Hz"
+      slave: 1
+      address: 079
+      data_type: uint16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+    # 169 Grid Power
+    - name: "Inverter Grid Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 169
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 167 Grid L1 Power
+    - name: "Inverter Grid L1 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 167
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 168 Grid L2 Power
+    - name: "Inverter Grid L2 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 168
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 150 Grid Voltage
+    - name: "Inverter Grid Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 150
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 160 Grid Current
+    - name: "Inverter Grid Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 160
+      data_type: int16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 1
+
+    # 172 Grid CT Power
+    - name: "Inverter Grid CT Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 172
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+############################## LOAD ##############################
+
+    # 178 Load Power
+    - name: "Inverter Load Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 178
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 176 Load L1 Power
+    - name: "Inverter Load L1 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 176
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 177 Load L2 Power
+    - name: "Inverter Load L2 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 177
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 192 Load Frequency
+    - name: "Inverter Load Frequency"
+      device_class: frequency
+      unit_of_measurement: "Hz"
+      slave: 1
+      address: 192
+      data_type: uint16
+      input_type: holding
+      scale: 0.01
+      offset: 0
+      precision: 2
+
+############################## SOLAR PV1 ##############################
+
+    # 186 PV1 Power
+    - name: "Inverter PV1 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 186
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 109 PV1 Voltage
+    - name: "Inverter PV1 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 109
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 110 PV1 Current
+    - name: "Inverter PV1 Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 110
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+############################## SOLAR PV2 ##############################
+
+    # 187 PV2 Power
+    - name: "Inverter PV2 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 187
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 111 PV2 Voltage
+    - name: "Inverter PV2 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 111
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 112 PV2 Current
+    - name: "Inverter PV2 Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 112
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+############################## OUTPUTS ##############################
+
+    # 166 Aux Power
+    - name: "Inverter Aux Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 166
+      data_type: int16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+############################## ENERGY ##############################
+
+    # 070 Day Battery Charge
+    - name: "Inverter Day Battery Charge"
+      device_class: energy_storage
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 70
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 071 Day Battery Discharge
+    - name: "Inverter Day Battery Discharge"
+      device_class: energy_storage
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 71
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 072 Total Battery Charge
+    - name: "Inverter Total Battery Charge"
+      device_class: energy_storage
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 72
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 074 Total Battery Discharge
+    - name: "Inverter Total Battery Discharge"
+      device_class: energy_storage
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 74
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 076 Day Grid Import
+    - name: "Inverter Day Grid Import"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 76
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 077 Day Grid Export
+    - name: "Inverter Day Grid Export"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 77
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 078 Total Grid Import
+    - name: "Inverter Total Grid Import"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 78
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 2
+
+    # 081 Total Grid Export
+    - name: "Inverter Total Grid Export"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 81
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 2
+
+    # 084 Day Load Energy
+    - name: "Inverter Day Load Energy"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 84
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 2
+
+    # 085 Total Load Energy
+    - name: "Inverter Total Load Energy"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 85
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 2
+
+    # 108 Day PV Energy
+    - name: "Inverter Day PV Energy"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 108
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 1
+
+    # 096 Total PV Energy
+    - name: "Inverter Total PV Energy"
+      device_class: energy
+      unit_of_measurement: "kWh"
+      state_class: total_increasing
+      slave: 1
+      address: 096
+      data_type: uint16
+      input_type: holding
+      scale: 0.1
+      offset: 0
+      precision: 2
+
+############################## TEMPERATURE ##############################
+
+    # 090 DC Temperature
+    - name: "Inverter DC Temperature"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      slave: 1
+      address: 090
+      data_type: int16
+      input_type: holding
+      scale: 0.1
+      offset: -100
+      precision: 1
+
+    # 091 AC Temperature
+    - name: "Inverter AC Temperature"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      slave: 1
+      address: 091
+      data_type: int16
+      input_type: holding
+      scale: 0.1
+      offset: -100
+      precision: 1
+
+############################## READ SETTINGS ##############################
+
+    # 250 Prog1 Time
+    - name: "Inverter Prog1 Time RAW"
+      slave: 1
+      address: 250
+      data_type: uint16
+      input_type: holding
+
+    # 250 Prog2 Time
+    - name: "Inverter Prog2 Time RAW"
+      slave: 1
+      address: 251
+      data_type: uint16
+      input_type: holding
+
+    # 250 Prog3 Time
+    - name: "Inverter Prog3 Time RAW"
+      slave: 1
+      address: 252
+      data_type: uint16
+      input_type: holding
+
+    # 250 Prog4 Time
+    - name: "Inverter Prog4 Time RAW"
+      slave: 1
+      address: 253
+      data_type: uint16
+      input_type: holding
+
+    # 250 Prog5 Time
+    - name: "Inverter Prog5 Time RAW"
+      slave: 1
+      address: 254
+      data_type: uint16
+      input_type: holding
+
+    # 250 Prog6 Time
+    - name: "Inverter Prog6 Time RAW"
+      slave: 1
+      address: 255
+      data_type: uint16
+      input_type: holding
+
+    # 245 Max Sell Power
+    - name: "Inverter Max Sell Power"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 245
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 500
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 230 Grid Charge Battery Current
+    - name: "Inverter Grid Charge Battery Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 230
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 185
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 210 Battery Max Charge Current
+    - name: "Inverter Battery Max Charge Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 210
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 185
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 211 Battery Max Discharge Current
+    - name: "Inverter Battery Max Discharge Current"
+      device_class: current
+      unit_of_measurement: "A"
+      slave: 1
+      address: 211
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 185
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 293 Grid Peak Shaving Power
+    - name: "Inverter Grid Peak Shaving Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 293
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 268 Prog1 Capacity
+    - name: "Inverter Prog1 Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 268
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 100
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 269 Prog2 Capacity
+    - name: "Inverter Prog2 Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 269
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 100
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 270 Prog3 Capacity
+    - name: "Inverter Prog3 Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 270
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 100
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 271 Prog4 Capacity
+    - name: "Inverter Prog4 Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 271
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 100
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 272 Prog5 Capacity
+    - name: "Inverter Prog5 Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 272
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 100
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 273 Prog6 Capacity
+    - name: "Inverter Prog6 Capacity"
+      device_class: battery
+      unit_of_measurement: "%"
+      slave: 1
+      address: 273
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 100
+ #      step: 5
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 256 Prog1 Power
+    - name: "Inverter Prog1 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 256
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 100
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 257 Prog2 Power
+    - name: "Inverter Prog2 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 257
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 100
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 258 Prog3 Power
+    - name: "Inverter Prog3 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 258
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 100
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 259 Prog4 Power
+    - name: "Inverter Prog4 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 259
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 100
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 260 Prog5 Power
+    - name: "Inverter Prog5 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 260
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 100
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 261 Prog6 Power
+    - name: "Inverter Prog6 Power"
+      device_class: power
+      unit_of_measurement: "W"
+      slave: 1
+      address: 261
+      data_type: uint16
+      input_type: holding
+ #      min_value: 0
+ #      max_value: 8000
+ #      step: 100
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 262 Prog1 Voltage
+    - name: "Inverter Prog1 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 262
+      data_type: uint16
+      input_type: holding
+ #      min_value: 41
+ #      max_value: 60
+ #      step: 0.1
+      scale: 0.01
+      offset: 0
+      precision: 0
+
+    # 263 Prog2 Voltage
+    - name: "Inverter Prog2 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 263
+      data_type: uint16
+      input_type: holding
+ #      min_value: 41
+ #      max_value: 60
+ #      step: 0.1
+      scale: 0.01
+      offset: 0
+      precision: 0
+
+    # 264 Prog3 Voltage
+    - name: "Inverter Prog3 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 264
+      data_type: uint16
+      input_type: holding
+ #      min_value: 41
+ #      max_value: 60
+ #      step: 0.1
+      scale: 0.01
+      offset: 0
+      precision: 0
+
+    # 265 Prog4 Voltage
+    - name: "Inverter Prog4 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 265
+      data_type: uint16
+      input_type: holding
+ #      min_value: 41
+ #      max_value: 60
+ #      step: 0.1
+      scale: 0.01
+      offset: 0
+      precision: 0
+
+    # 266 Prog5 Voltage
+    - name: "Inverter Prog5 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 266
+      data_type: uint16
+      input_type: holding
+ #      min_value: 41
+ #      max_value: 60
+ #      step: 0.1
+      scale: 0.01
+      offset: 0
+      precision: 0
+
+    # 267 Prog6 Voltage
+    - name: "Inverter Prog6 Voltage"
+      device_class: voltage
+      unit_of_measurement: "V"
+      slave: 1
+      address: 267
+      data_type: uint16
+      input_type: holding
+ #      min_value: 41
+ #      max_value: 60
+ #      step: 0.1
+      scale: 0.01
+      offset: 0
+      precision: 0
+
+    # 243 Select Energy Patern
+    - name: "Inverter Energy Patern RAW"
+      slave: 1
+      address: 243
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 244 Select Work Mode
+    - name: "Inverter Work Mode RAW"
+      slave: 1
+      address: 244
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 235 Select Generator Input
+    - name: "Inverter Generator Input RAW"
+      slave: 1
+      address: 235
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+    # 280 Select Grid Peak Shaving
+    - name: "Inverter Grid Peak Shaving RAW"
+      slave: 1
+      address: 280
+      data_type: uint16
+      input_type: holding
+      scale: 1
+      offset: 0
+      precision: 0
+
+############################## TEXT SENSORS ##############################
+
+    # 059 Inverter Overall State
+    - name: "Inverter Overall State RAW"
+      slave: 1
+      address: 59
+      input_type: holding
+
+    # 003 Serial Number Hex 1 
+    - name: "Inverter Serial Number Hex 1 RAW"
+      slave: 1
+      address: 3
+      input_type: holding
+
+    # 004 Serial Number Hex 2
+    - name: "Inverter Serial Number Hex 2 RAW"
+      slave: 1
+      address: 4
+      input_type: holding
+
+    # 005 Serial Number Hex 3
+    - name: "Inverter Serial Number Hex 3 RAW"
+      slave: 1
+      address: 5
+      input_type: holding
+
+    # 006 Serial Number Hex 4
+    - name: "Inverter Serial Number Hex 4 RAW"
+      slave: 1
+      address: 6
+      input_type: holding
+
+    # 007 Serial Number Hex 5
+    - name: "Inverter Serial Number Hex 5 RAW"
+      slave: 1
+      address: 7
+      input_type: holding
+
+############################## SWITCHES ##############################
+
+  switches:
+  
+    # 232 Toggle Grid Charge
+    - name: "Inverter Toggle Grid Charge"
+      slave: 1
+      address: 232
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 232
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 231 Toggle Generator Charge
+    - name: "Inverter Toggle Generator Charge"
+      slave: 1
+      address: 231
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 231
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 326 Toggle Force Generator
+    - name: "Inverter Toggle Force Generator"
+      slave: 1
+      address: 326
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 326
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 247 Toggle Solar Sell
+    - name: "Inverter Toggle Solar Sell"
+      slave: 1
+      address: 247
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 247
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 248 Toggle System Timer
+    - name: "Inverter Toggle System Timer"
+      slave: 1
+      address: 248
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 248
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 274 Prog1 Charge
+    - name: "Inverter Prog1 Charge"
+      slave: 1
+      address: 274
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 274
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 275 Prog2 Charge
+    - name: "Inverter Prog2 Charge"
+      slave: 1
+      address: 275
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 275
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 276 Prog3 Charge
+    - name: "Inverter Prog3 Charge"
+      slave: 1
+      address: 276
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 276
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 277 Prog4 Charge
+    - name: "Inverter Prog4 Charge"
+      slave: 1
+      address: 277
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 277
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 278 Prog5 Charge
+    - name: "Inverter Prog5 Charge"
+      slave: 1
+      address: 278
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 278
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+    # 279 Prog6 Charge
+    - name: "Inverter Prog6 Charge"
+      slave: 1
+      address: 279
+      write_type: holding
+      command_off: 0
+      command_on: 1
+      verify:
+        address: 279
+        input_type: holding
+        state_off: 0
+        state_on: 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

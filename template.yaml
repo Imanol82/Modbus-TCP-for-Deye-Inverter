@@ -1,0 +1,189 @@
+############################## TEMPLATES FOR MODBUS INVERTER ##############################
+
+  - sensor:
+
+# Inverter Serial Number Formatted  
+      - name: "Inverter Serial Number"
+        state: >-
+          {% set hex_value1 = states('sensor.inverter_serial_number_hex_1_raw') %}
+          {% set hex_value2 = states('sensor.inverter_serial_number_hex_2_raw') %}
+          {% set hex_value3 = states('sensor.inverter_serial_number_hex_3_raw') %}
+          {% set hex_value4 = states('sensor.inverter_serial_number_hex_4_raw') %}
+          {% set hex_value5 = states('sensor.inverter_serial_number_hex_5_raw') %}
+          {{ hex_value1[0:2] + hex_value2[0:2] + hex_value3[0:2] + hex_value4[0:2] + hex_value5[0:2] }}
+  
+# 059 Inverter Overall State
+      - name: "Inverter Overall State"
+        state: >
+          {% set value = states('sensor.inverter_overall_state_raw') | int %}
+          {% if value == 0 %}
+            Standby
+          {% elif value == 1 %}
+            Selftest
+          {% elif value == 2 %}
+            Normal
+          {% elif value == 3 %}
+            Alarm!
+          {% elif value == 4 %}
+            Fault
+          {% else %}
+            Unknown
+          {% endif %}
+
+# 243 Select Energy Patern
+      - name: "Inverter Energy Patern"
+        state: >
+          {% set value = states('sensor.inverter_energy_patern_raw') | int %}
+          {% if value == 0 %}
+            Battery First
+          {% elif value == 1 %}
+            Load First
+          {% else %}
+            Unknown
+          {% endif %}
+
+# 244 Select Work Mode
+      - name: "Inverter Work Mode"
+        state: >
+          {% set value = states('sensor.inverter_work_mode_raw') | int %}
+          {% if value == 0 %}
+            Selling First
+          {% elif value == 1 %}
+            Zero Export + Limit to Load Only
+          {% elif value == 2 %}
+            Limited to Home
+          {% else %}
+            Unknown
+          {% endif %}
+
+#235 Select Generator Input
+      - name: "Inverter Generator Input"
+        state: >
+          {% set value = states('sensor.inverter_generator_input_raw') | int %}
+          {% if value == 0 %}
+            Disable
+          {% elif value == 1 %}
+            Output
+          {% elif value == 2 %}
+            Input
+          {% else %}
+            Unknown
+          {% endif %}
+
+# 280 Select Grid Peak Shaving
+      - name: "Inverter Grid Peak Shaving"
+        state: >
+          {% set value = states('sensor.inverter_grid_peak_shaving_raw') | int %}
+          {% if value == 0 %}
+            Disabled
+          {% elif value == 256 %}
+            Enabled
+          {% else %}
+            Unknown
+          {% endif %}
+
+# Sum of PV1 and PV2 to get total PV Power
+      - name: "Inverter Solar Power"
+        unit_of_measurement: "W"
+        state: >-
+          {{ (states('sensor.inverter_pv1_power') | float + states('sensor.inverter_pv2_power') | float) | round(0) }}
+        device_class: power
+        state_class: measurement
+
+# Essential Power based on register 175 + 169 - 166
+      - name: "Inverter Essential Power"
+        unit_of_measurement: "W"
+        state: >-
+          {{ (states('sensor.inverter_power') | float + states('sensor.inverter_grid_power') | float - states('sensor.inverter_aux_power') | float) | int }}
+        device_class: power
+        state_class: measurement
+
+# Nonessential Power based on register 172 - 169
+      - name: "Inverter Nonessential Power"
+        unit_of_measurement: "W"
+        state: >- 
+          {{ (states('sensor.inverter_grid_ct_power') | float - states('sensor.inverter_grid_power') | float) | int }}
+        device_class: power
+        state_class: measurement
+        
+# Inverter Prog1 Time Formatted
+      - name: "Inverter Prog1 Time"
+        state: >-
+          {% set time_value = states('sensor.inverter_prog1_time_raw') | int %}
+          {% if time_value is not none and time_value >= 0 and time_value <= 2359 %}
+            {% set hours = time_value // 100 %}
+            {% set minutes = time_value % 100 %}
+            {{ '{:02d}:{:02d}'.format(hours, minutes) }}
+          {% else %}
+            unavailable
+          {% endif %}
+
+# Inverter Prog2 Time Formatted
+      - name: "Inverter Prog2 Time"
+        state: >-
+          {% set time_value = states('sensor.inverter_prog2_time_raw') | int %}
+          {% if time_value is not none and time_value >= 0 and time_value <= 2359 %}
+            {% set hours = time_value // 100 %}
+            {% set minutes = time_value % 100 %}
+            {{ '{:02d}:{:02d}'.format(hours, minutes) }}
+          {% else %}
+            unavailable
+          {% endif %}
+
+# Inverter Prog3 Time Formatted
+      - name: "Inverter Prog3 Time"
+        state: >-
+          {% set time_value = states('sensor.inverter_prog3_time_raw') | int %}
+          {% if time_value is not none and time_value >= 0 and time_value <= 2359 %}
+            {% set hours = time_value // 100 %}
+            {% set minutes = time_value % 100 %}
+            {{ '{:02d}:{:02d}'.format(hours, minutes) }}
+          {% else %}
+            unavailable
+          {% endif %}
+
+# Inverter Prog4 Time Formatted
+      - name: "Inverter Prog4 Time"
+        state: >-
+          {% set time_value = states('sensor.inverter_prog4_time_raw') | int %}
+          {% if time_value is not none and time_value >= 0 and time_value <= 2359 %}
+            {% set hours = time_value // 100 %}
+            {% set minutes = time_value % 100 %}
+            {{ '{:02d}:{:02d}'.format(hours, minutes) }}
+          {% else %}
+            unavailable
+          {% endif %}
+
+# Inverter Prog5 Time Formatted
+      - name: "Inverter Prog5 Time"
+        state: >-
+          {% set time_value = states('sensor.inverter_prog5_time_raw') | int %}
+          {% if time_value is not none and time_value >= 0 and time_value <= 2359 %}
+            {% set hours = time_value // 100 %}
+            {% set minutes = time_value % 100 %}
+            {{ '{:02d}:{:02d}'.format(hours, minutes) }}
+          {% else %}
+            unavailable
+          {% endif %}
+
+# Inverter Prog6 Time Formatted
+      - name: "Inverter Prog6 Time"
+        state: >-
+          {% set time_value = states('sensor.inverter_prog6_time_raw') | int %}
+          {% if time_value is not none and time_value >= 0 and time_value <= 2359 %}
+            {% set hours = time_value // 100 %}
+            {% set minutes = time_value % 100 %}
+            {{ '{:02d}:{:02d}'.format(hours, minutes) }}
+          {% else %}
+            unavailable
+          {% endif %}
+
+
+
+
+
+
+
+
+
+
