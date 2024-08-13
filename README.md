@@ -2,7 +2,7 @@
 An easy way to connect Home Assistant with Deye inverter using Modbus TCP.
 
 
-With this simple project I wanted to find a more industrial way to connect a Deye inverter with Home Assistan.
+With this simple project I wanted to find a industrial way to connect a Deye inverter with Home Assistan.
 Cheap and without any welding.
 
 
