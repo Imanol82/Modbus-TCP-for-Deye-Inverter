@@ -19,7 +19,7 @@ Cheap and without any welding.
 
 ![Image](https://github.com/user-attachments/assets/f74ff8bf-3d07-4fa2-853d-0e5379ff8f26)
 
-2. A RJ45 cable. That's all.
+2. A RJ45 cable. That's all!!
 
 
 
@@ -48,7 +48,7 @@ Cut the RJ45 and connect:
 
 Third Step:
 
-On Home Assistant, put put the Modbus.yaml and Templates.yaml files next to the Configuration.yaml.
+On Home Assistant, put the Modbus.yaml and Templates.yaml files next to the Configuration.yaml.
 
 Edit Configuration.yaml:
 
