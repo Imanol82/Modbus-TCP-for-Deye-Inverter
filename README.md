@@ -70,7 +70,7 @@ When you restart, if you search for the Inverter entities, you should see all of
 
 Notes:
 1. They are only reading sensors, I have not been able to make the switches and selectors work, it is on the pending list.
-2. I have based myself on the sensors in @slipx06's project. They were much better organized than in Deye's documentation.
+2. I have based on the sensors in @slipx06's project. They were much better organized than in Deye's documentation.
 
 To do list (I would be very grateful if you help me with these points):
 1. Make Switches functional. Now they only show the state they are in.
